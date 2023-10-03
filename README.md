@@ -8,6 +8,10 @@ Poentially to be deployed with Vercel & Integrated with a BAAS solution either F
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+-   Follow the `ReadME` instructions to get started with the project & figure out what your tasks are
+-   If anything is unclear, feel free to make necessary assumtions
+-   Proper use of the `The Web` & `AI tools` is `Highly Encouraged` to complete the tasks
+
 First, run the development server:
 
 ```bash
@@ -29,7 +33,8 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 ### 🟢 `Feature Task-1: Easy`
 
 -   Refactor the `Dashboard` page into more smaller & reuseable components components
--   `What we'll evaluate` : How you write, organize & structure your code for building maintainable & scalable applications
+-   `What we'll evaluate` :
+    -   How you write, organize & structure your code for building maintainable & scalable solutions
 
 ### 🟡 `Feature Task-2: Medium`
 
@@ -38,22 +43,31 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 -   You'd have to connect to a DB to persist user data at this point, you can use Firestore from Firebase or Postgres from Supabase for this.
 -   Bonus points for using Supabase since its open source wihtout vendor lock-in
 -   `Explanation`: `Authentication` is the process of verifying who a user is, while `Authorization` is the process of verifying what they have access to.
--   ` What we'll evaluate` : What kind of code & best-practice you follow for adding something standard like authentication to an application, how you organize & structure your Data, How you deal with Data flow & How can you build solutions from reading documentation
+-   ` What we'll evaluate` :
+    -   What kind of code & best-practice you follow for adding something standard like authentication to an application
+    -   How you organize & structure your Data & how you create abstractions to it
+    -   How you deal with Data flow
+    -   How can you build solutions from reading documentation
 
 ### 🟠 `Feature Task-3: Hard`
 
 -   Refactor the `Dashboard` page and add `Authorization` to the side-navigation items of the Dashboad page.
 -   Further Explanation: - Whenever a user signs-up, we create a new user record in the DB, and assign them a `role` of `user` by default. - We can then create a new `role` of `admin` and assign it to a user manually from the DB. - We can then use this `role` to determine what a user can access or not and use this information to hide or show the side-navigation items.
-    -   Assumptions:
-        -   Only `Reports` will be visible to `users` while everything will be visible to `admins`
-    -   ` What we'll evaluate` : How you solve an application level problem, how you organize & structure your Data, how your solution would scale as the application grows & more users are added.
+-   Assumptions:
+    -   Only `Reports` will be visible to `users` while everything will be visible to `admins`
+-   ` What we'll evaluate` :
+    -   How you solve an application wide problem
+    -   How you organize & structure your Data
+    -   How your solution would scale as the application grows & more users are added.
+    -   How you go about venturing uncharted territories, learning from the web & coming up with a solution
 
 ## How to submit your solutions ✍️
 
--   Fork this repository
+-   Fork this repository & make it private
 -   Create a feature branch while working on your solution. For example, if you're working on `Feature Task-1: Easy`, you can create a branch called `feature/task-1`
--   Once you're done, create a pull request to the `main` branch of the repository & Merge it. Don't delete the feature branch on merge.
+-   Once you're done, create a pull request to the `main` branch of the repository & Merge it. Don't delete the feature branch on merge as we'll look at the commit history of the feature branch.
 -   Make sure its a private and invite `abinhossain@shatez.com` for evaluation.
+-   Once the evaluation is complete, we'll reach out to you if you're selected for the next round.
 
 ---
 
