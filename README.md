@@ -65,10 +65,10 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## How to submit your solutions ✍️
 
--   Fork this repository & make it private
+-   Clone this repository
 -   Create a feature branch while working on your solution. For example, if you're working on `Feature Task-1: Easy`, you can create a branch called `feature/task-1`
 -   Once you're done, create a pull request to the `main` branch of the repository & Merge it. Don't delete the feature branch on merge as we'll look at the commit history of the feature branch.
--   Make sure its a private and invite `abinhossain@shatez.com` for evaluation.
+-   Invite `abinhossain@shatez.com` for evaluation. Its upto you if you want to make it Public or Private. Private is encouraged but not mandatory in any way.
 -   Once the evaluation is complete, we'll reach out to you if you're selected for the next round.
 
 ---
