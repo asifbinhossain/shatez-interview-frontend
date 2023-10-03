@@ -43,6 +43,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 -   You'd have to connect to a DB to persist user data at this point, you can use Firestore from Firebase or Postgres from Supabase for this.
 -   Bonus points for using Supabase since its open source wihtout vendor lock-in
 -   `Explanation`: `Authentication` is the process of verifying who a user is, while `Authorization` is the process of verifying what they have access to.
+-   Make a developer documentation for your solution, named `feature2.md`, having how you solved the problem, what you did & why you did it that way & any necessary assumptions you made
 -   ` What we'll evaluate` :
     -   What kind of code & best-practice you follow for adding something standard like authentication to an application
     -   How you organize & structure your Data & how you create abstractions to it
@@ -55,6 +56,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 -   Further Explanation: - Whenever a user signs-up, we create a new user record in the DB, and assign them a `role` of `user` by default. - We can then create a new `role` of `admin` and assign it to a user manually from the DB. - We can then use this `role` to determine what a user can access or not and use this information to hide or show the side-navigation items.
 -   Assumptions:
     -   Only `Reports` will be visible to `users` while everything will be visible to `admins`
+-   Make a developer documentation for your solution, named `feature3.md`, having how you solved the problem, what you did & why you did it that way & any necessary assumptions you made
 -   ` What we'll evaluate` :
     -   How you solve an application wide problem
     -   How you organize & structure your Data
