@@ -68,7 +68,7 @@ const NavigationSidebarMobile: React.FC<NavigationSidebarMobileProps> = ({
                 </div>
               </Transition.Child>
               {/* Sidebar component, swap this element with another sidebar if you like */}
-              <NavigationSidebar />
+              <NavigationSidebar user={null} />
             </Dialog.Panel>
           </Transition.Child>
         </div>

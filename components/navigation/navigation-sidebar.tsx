@@ -8,20 +8,8 @@ import {
   UsersIcon,
 } from "@heroicons/react/24/outline";
 import NavigationItem from "./navigation-item";
-
-const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Team", href: "#", icon: UsersIcon, current: false },
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  {
-    name: "Documents",
-    href: "#",
-    icon: DocumentDuplicateIcon,
-    current: false,
-  },
-  { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
-];
+import { User } from "@/types";
+import React from "react";
 
 const teams = [
   { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
@@ -29,7 +17,28 @@ const teams = [
   { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
 ];
 
-const NavigationSidebar = () => {
+type NavigationSidebarProps = {
+  user: User;
+};
+
+const NavigationSidebar: React.FC<NavigationSidebarProps> = ({ user }) => {
+  const navigation =
+    user?.role === "USER"
+      ? [{ name: "Reports", href: "#", icon: ChartPieIcon, current: false }]
+      : [
+          { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
+          { name: "Team", href: "#", icon: UsersIcon, current: false },
+          { name: "Projects", href: "#", icon: FolderIcon, current: false },
+          { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
+          {
+            name: "Documents",
+            href: "#",
+            icon: DocumentDuplicateIcon,
+            current: false,
+          },
+          { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
+        ];
+
   return (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
       <div className="flex h-16 shrink-0 items-center">
