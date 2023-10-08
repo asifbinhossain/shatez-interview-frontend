@@ -1,6 +1,6 @@
 "use client"
 
-import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, Fragment, SetStateAction } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import NavigationSidebar from "./navigation-sidebar";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -14,15 +14,6 @@ const NavigationSidebarMobile: React.FC<NavigationSidebarMobileProps> = ({
   sidebarOpen,
   setSidebarOpen,
 }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-  if (!isMounted) {
-    return null;
-  }
-
   return (
     <Transition.Root show={sidebarOpen} as={Fragment}>
       <Dialog

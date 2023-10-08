@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { classNames } from "@/lib/utils";
 import { Dispatch, Fragment, SetStateAction } from "react";
@@ -8,18 +8,29 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/20/solid";
 import { Menu, Transition } from "@headlessui/react";
+import { signOut } from "next-auth/react";
+import { User } from "@/types";
 
 const userNavigation = [
   { name: "Your profile", href: "#" },
-  { name: "Sign out", href: "#" },
+  {
+    name: "Sign out",
+    onClick: () =>
+      signOut({
+        callbackUrl: "/",
+        redirect: true,
+      }),
+  },
 ];
 
 type NavigationNavbarProps = {
   setSidebarOpen: Dispatch<SetStateAction<boolean>>;
+  user: User;
 };
 
 const NavigationNavbar: React.FC<NavigationNavbarProps> = ({
   setSidebarOpen,
+  user,
 }) => {
   return (
     <>
@@ -75,7 +86,10 @@ const NavigationNavbar: React.FC<NavigationNavbarProps> = ({
                   <span className="sr-only">Open user menu</span>
                   <img
                     className="h-8 w-8 rounded-full bg-gray-50"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src={
+                      user?.image ||
+                      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    }
                     alt=""
                   />
                   <span className="hidden lg:flex lg:items-center">
@@ -83,7 +97,7 @@ const NavigationNavbar: React.FC<NavigationNavbarProps> = ({
                       className="ml-4 text-sm font-semibold leading-6 text-gray-900"
                       aria-hidden="true"
                     >
-                      Tom Cook
+                      {user?.name || "Tom Cook"}
                     </span>
                     <ChevronDownIcon
                       className="ml-2 h-5 w-5 text-gray-400"
@@ -110,6 +124,7 @@ const NavigationNavbar: React.FC<NavigationNavbarProps> = ({
                               active ? "bg-gray-50" : "",
                               "block px-3 py-1 text-sm leading-6 text-gray-900"
                             )}
+                            onClick={item.onClick}
                           >
                             {item.name}
                           </a>
