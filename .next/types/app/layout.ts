@@ -1,4 +1,4 @@
-// File: /Users/devilsworkshop/my-projects/vercel-supabase/shatez-interview-frontend/app/layout.tsx
+// File: /home/webmmr/Desktop/Shatez/shatez-interview-frontend/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
