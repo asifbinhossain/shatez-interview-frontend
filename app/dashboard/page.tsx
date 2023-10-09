@@ -1,7 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
+import { useState } from "react";
 
 import Topbar from "@/components/Topbar";
 import Sidebar from "@/components/Sidebar";
