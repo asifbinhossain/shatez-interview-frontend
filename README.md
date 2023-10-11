@@ -1,91 +1,37 @@
-# Shatez frontend interview: About this project 📚🙋
+# Shatez frontend interview: Task3 (User Authentication and Authorization)
 
-This is a boilerplate frontend project intended to have feature based task lists for Shatez frontend interviews. It is built with Next.js, TypeScript, and TailwindCSS.
+## Goal
 
-Poentially to be deployed with Vercel & Integrated with a BAAS solution either Firebase or Supabase
+The task is to refactor the Dashboard to implement user authorization to Sidebar Navigation panel. Only the user with "admin" role will get the full access to navigation panel and default users (with a user role of "user") will get access to only certain part of the navigation panel
 
-## Getting Started 🚀
+### Refactoring the Dashboard
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This part was already done as a part of Task One. The Dashboard was divided into three main components, which can be re-used easily if necessary. Sidebar, Topbar and the Main area. The Sidebar nav data is coming from an external data.js file so that we can feed the data to different components when and if necessary.
 
--   Follow the `ReadME` instructions to get started with the project & figure out what your tasks are
--   If anything is unclear, feel free to make necessary assumtions
--   Proper use of the `The Web` & `AI tools` is `Highly Encouraged` to complete the tasks
+### User Authentication and Authorization
 
-First, run the development server:
+For user authentication NextAuth.js is used for Google OAuth. Prisma is used for data modelling connecting with Supabase. These particular services was used because they provide the overall best solutions for this case with their simplified integration with Next Js application
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+The process is as follows,
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- When an user sign in through Google, a default role of "user" is assigned to them.
+- To set a particular user "admin" role, it was required to change the role manually in the datadase
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The authorization logic is as follows,
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- In the SidebarNavs component the navigation data is mapped and shown in the dashboard.
+- Just before that a filtered method is used to filter out the navigation items based on the user role
+- If an user is a "user", they will be shown the filtered Navigation
+- if an user is a "admin", they will be granted the full navigation
 
-## Feature based task lists 🛠️
+#### Issue
 
-### 🟢 `Feature Task-1: Easy`
+From the current authorization implementation an user is authorized to see the selected navigation elements. But any particular user has access to the full application if he/she knows the url routes. To prevent that we can authorized an user in the middleware where we can set the user to only access particular routes
 
--   Refactor the `Dashboard` page into more smaller & reuseable components components
--   `What we'll evaluate` :
-    -   How you write, organize & structure your code for building maintainable & scalable solutions
+### Why this approach
 
-### 🟡 `Feature Task-2: Medium`
+This approach was taken to ensure the code flexibility and maintainablity. By using the filter login based on user role right in the Sidebar Nav components it is ensured that none of the other parts are affcted if there is an error. Also it will be very easy to add/remove navigation links based on the user roles
 
--   Refactor the `Home/Index` by adding authentication (with Google OAuth) with a BAAS (Backend As A Service) solution like Firebase or Supabase, whichever you're comfortable with.
--   Make the Dashboard page visible only when a user is logged in.
--   You'd have to connect to a DB to persist user data at this point, you can use Firestore from Firebase or Postgres from Supabase for this.
--   Bonus points for using Supabase since its open source wihtout vendor lock-in
--   `Explanation`: `Authentication` is the process of verifying who a user is, while `Authorization` is the process of verifying what they have access to.
--   Make a developer documentation for your solution, named `feature2.md`, having how you solved the problem, what you did & why you did it that way & any necessary assumptions you made
--   ` What we'll evaluate` :
-    -   What kind of code & best-practice you follow for adding something standard like authentication to an application
-    -   How you organize & structure your Data & how you create abstractions to it
-    -   How you deal with Data flow
-    -   How can you build solutions from reading documentation
+## Assumption
 
-### 🟠 `Feature Task-3: Hard`
-
--   Refactor the `Dashboard` page and add `Authorization` to the side-navigation items of the Dashboad page.
--   Further Explanation: - Whenever a user signs-up, we create a new user record in the DB, and assign them a `role` of `user` by default. - We can then create a new `role` of `admin` and assign it to a user manually from the DB. - We can then use this `role` to determine what a user can access or not and use this information to hide or show the side-navigation items.
--   Assumptions:
-    -   Only `Reports` will be visible to `users` while everything will be visible to `admins`
--   Make a developer documentation for your solution, named `feature3.md`, having how you solved the problem, what you did & why you did it that way & any necessary assumptions you made
--   ` What we'll evaluate` :
-    -   How you solve an application wide problem
-    -   How you organize & structure your Data
-    -   How your solution would scale as the application grows & more users are added.
-    -   How you go about venturing uncharted territories, learning from the web & coming up with a solution
-
-## How to submit your solutions ✍️
-
--   Fork or Clone this repository
--   Create a feature branch while working on your solution. For example, if you're working on `Feature Task-1: Easy`, you can create a branch called `feature/task-1`
--   Once you're done, create a pull request to the `main` branch of the repository & Merge it. Don't delete the feature branch on merge as we'll look at the commit history of the feature branch.
--   Invite `abinhossain@shatez.com` for evaluation. Its upto you if you want to make it Public or Private. Private is encouraged but not mandatory in any way.
--   Once the evaluation is complete, we'll reach out to you if you're selected for the next round.
-
----
-
-### External Resources 📖
-
-To learn more about Next.js, take a look at the following resources:
-
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
----
-
-### How to Deploy on Vercel ☁️
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+At the moment it is assumed that users can either be "user" or "admin".
