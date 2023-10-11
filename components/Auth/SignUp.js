@@ -33,6 +33,18 @@ const SignUp = () => {
     }
   }
 
+  async function signUpWithGoogle() {
+    let { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+    });
+
+    console.log(data);
+
+    if (error) {
+      setErrorMsg(error.message);
+    }
+  }
+
   return (
     <div className="card h-full w-full grid place-content-center bg-white">
       <div className="p-8 rounded-lg bg-slate-50 w-[450px]">
@@ -94,6 +106,17 @@ const SignUp = () => {
             </Form>
           )}
         </Formik>
+
+        <div className="my-5 text-stone-900 text-center">or,</div>
+
+        <button
+          className="button-inverse w-full bg-slate-800 p-3 rounded-lg hover:bg-stone-900"
+          type="button"
+          onClick={signUpWithGoogle}
+        >
+          Sign Up with Google
+        </button>
+
         {errorMsg && <div className="text-red-600">{errorMsg}</div>}
         {successMsg && <div className="text-black">{successMsg}</div>}
         <Link

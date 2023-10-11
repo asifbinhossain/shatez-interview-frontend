@@ -26,6 +26,8 @@ export default async function RootLayout({
     data: { session },
   } = await supabase.auth.getSession();
 
+  console.log(session);
+
   const accessToken = session?.access_token || null;
 
   return (

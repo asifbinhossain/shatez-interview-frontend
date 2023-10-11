@@ -12,8 +12,6 @@ export default function SignOut() {
     if (error) {
       // eslint-disable-next-line no-console
       console.error("ERROR:", error);
-    } else {
-      redirect("/");
     }
   }
 

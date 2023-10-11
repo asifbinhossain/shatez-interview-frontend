@@ -16,11 +16,30 @@ const SignIn = () => {
   const supabase = createClientComponentClient();
   const [errorMsg, setErrorMsg] = useState(null);
 
-  async function signIn(formData) {
+  async function signInWithEmail(formData) {
     const { error } = await supabase.auth.signInWithPassword({
       email: formData.email,
       password: formData.password,
     });
+
+    if (error) {
+      setErrorMsg(error.message);
+    }
+  }
+
+  async function signInwithGoogle() {
+    let { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
+        },
+        redirectTo: "/dashboard",
+      },
+    });
+
+    console.log(data);
 
     if (error) {
       setErrorMsg(error.message);
@@ -39,7 +58,7 @@ const SignIn = () => {
             password: "",
           }}
           validationSchema={SignInSchema}
-          onSubmit={signIn}
+          onSubmit={signInWithEmail}
         >
           {({ errors, touched }) => (
             <Form className="column w-full">
@@ -88,7 +107,19 @@ const SignIn = () => {
             </Form>
           )}
         </Formik>
+
+        <div className="my-5 text-stone-900 text-center">or,</div>
+
+        <button
+          className="button-inverse w-full bg-slate-800 p-3 rounded-lg hover:bg-stone-900"
+          type="button"
+          onClick={signInwithGoogle}
+        >
+          Sign In with Google
+        </button>
+
         {errorMsg && <div className="text-red-600">{errorMsg}</div>}
+
         <Link
           href="/signup"
           className="link w-full text-md text-blue-600 text-center block mt-5 hover:text-blue-700"
