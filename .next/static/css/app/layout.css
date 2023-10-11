@@ -943,6 +943,9 @@ select {
 .gap-4 {
   gap: 1rem;
 }
+.gap-8 {
+  gap: 2rem;
+}
 .gap-px {
   gap: 1px;
 }
@@ -1374,9 +1377,9 @@ body {
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
   }
 
-  .lg\:px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
+  .lg\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .lg\:px-8 {

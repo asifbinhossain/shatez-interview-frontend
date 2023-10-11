@@ -1,8 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Providers from "./components/Provider";
-import SigninButton from "./components/SignIn";
+import Providers from "../components/Provider";
+import SigninButton from "../components/SignIn";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en" className="h-full bg-white">
       <body className="h-full w-full">
         <Providers>
-          <SigninButton />
+          {/* <SigninButton /> */}
           {children}
         </Providers>
       </body>
